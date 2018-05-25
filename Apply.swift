@@ -2,14 +2,14 @@
 //  Based on https://www.drivenbycode.com/the-missing-apply-function-in-swift/
 
 /** Variadic */
-func apply<T, U>(fn: (T...) -> U, args: [T]) -> U? {
+public func apply<T, U>(fn: (T...) -> U, args: [T]) -> U? {
     typealias FunctionType = ([T]) -> U
     return unsafeBitCast(fn, to: FunctionType.self)(args)
 }
 
-
 /** 1 Argument */
-func apply<A, Z>(fn: (A) -> Z, args: [Any]) -> Z? {
+public func apply<A, Z>(fn: (A) -> Z, args: [Any]) -> Z? {
+    if args.isEmpty { return nil }
     if let a0 = args[0] as? A {
         return fn(a0)
     }
@@ -17,7 +17,8 @@ func apply<A, Z>(fn: (A) -> Z, args: [Any]) -> Z? {
 }
 
 /** 2 Arguments */
-func apply<A, B, Z>(fn2: (A, B) -> Z, args: [Any]) -> Z? {
+public func apply<A, B, Z>(fn2: (A, B) -> Z, args: [Any]) -> Z? {
+    if args.count < 2 { return nil }
     if  let a0 = args[0] as? A,
         let a1 = args[1] as? B
     { return fn2(a0, a1) }
@@ -25,7 +26,8 @@ func apply<A, B, Z>(fn2: (A, B) -> Z, args: [Any]) -> Z? {
 }
 
 /** 3 Arguments */
-func apply<A, B, C, Z>(fn3: (A, B, C) -> Z, args: [Any]) -> Z? {
+public func apply<A, B, C, Z>(fn3: (A, B, C) -> Z, args: [Any]) -> Z? {
+    if args.count < 3 { return nil }
     if  let a0 = args[0] as? A,
         let a1 = args[1] as? B,
         let a2 = args[2] as? C
@@ -34,7 +36,8 @@ func apply<A, B, C, Z>(fn3: (A, B, C) -> Z, args: [Any]) -> Z? {
 }
 
 /** 4 Arguments */
-func apply<A, B, C, D, Z>(fn4: (A, B, C, D) -> Z, args: [Any]) -> Z? {
+public func apply<A, B, C, D, Z>(fn4: (A, B, C, D) -> Z, args: [Any]) -> Z? {
+    if args.count < 4 { return nil }
     if  let a0 = args[0] as? A,
         let a1 = args[1] as? B,
         let a2 = args[2] as? C,
@@ -44,7 +47,8 @@ func apply<A, B, C, D, Z>(fn4: (A, B, C, D) -> Z, args: [Any]) -> Z? {
 }
 
 /** 5 Arguments */
-func apply<A, B, C, D, E, Z>(fn5: (A, B, C, D, E) -> Z, args: [Any]) -> Z? {
+public func apply<A, B, C, D, E, Z>(fn5: (A, B, C, D, E) -> Z, args: [Any]) -> Z? {
+    if args.count < 5 { return nil }
     if  let a0 = args[0] as? A,
         let a1 = args[1] as? B,
         let a2 = args[2] as? C,
@@ -55,7 +59,8 @@ func apply<A, B, C, D, E, Z>(fn5: (A, B, C, D, E) -> Z, args: [Any]) -> Z? {
 }
 
 /** 6 Arguments */
-func apply<A, B, C, D, E, F, Z>(fn6: (A, B, C, D, E, F) -> Z, args: [Any]) -> Z? {
+public func apply<A, B, C, D, E, F, Z>(fn6: (A, B, C, D, E, F) -> Z, args: [Any]) -> Z? {
+    if args.count < 6 { return nil }
     if  let a0 = args[0] as? A,
         let a1 = args[1] as? B,
         let a2 = args[2] as? C,
@@ -67,7 +72,8 @@ func apply<A, B, C, D, E, F, Z>(fn6: (A, B, C, D, E, F) -> Z, args: [Any]) -> Z?
 }
 
 /** 7 Arguments */
-func apply<A, B, C, D, E, F, G, Z>(fn7: (A, B, C, D, E, F, G) -> Z, args: [Any]) -> Z? {
+public func apply<A, B, C, D, E, F, G, Z>(fn7: (A, B, C, D, E, F, G) -> Z, args: [Any]) -> Z? {
+    if args.count < 7 { return nil }
     if  let a0 = args[0] as? A,
         let a1 = args[1] as? B,
         let a2 = args[2] as? C,
@@ -80,7 +86,8 @@ func apply<A, B, C, D, E, F, G, Z>(fn7: (A, B, C, D, E, F, G) -> Z, args: [Any])
 }
 
 /** 8 Arguments */
-func apply<A, B, C, D, E, F, G, H, Z>(fn8: (A, B, C, D, E, F, G, H) -> Z, args: [Any]) -> Z? {
+public func apply<A, B, C, D, E, F, G, H, Z>(fn8: (A, B, C, D, E, F, G, H) -> Z, args: [Any]) -> Z? {
+    if args.count < 8 { return nil }
     if  let a0 = args[0] as? A,
         let a1 = args[1] as? B,
         let a2 = args[2] as? C,
@@ -94,7 +101,8 @@ func apply<A, B, C, D, E, F, G, H, Z>(fn8: (A, B, C, D, E, F, G, H) -> Z, args: 
 }
 
 /** 9 Arguments */
-func apply<A, B, C, D, E, F, G, H, I, Z>(fn9: (A, B, C, D, E, F, G, H, I) -> Z, args: [Any]) -> Z? {
+public func apply<A, B, C, D, E, F, G, H, I, Z>(fn9: (A, B, C, D, E, F, G, H, I) -> Z, args: [Any]) -> Z? {
+    if args.count < 9 { return nil }
     if  let a0 = args[0] as? A,
         let a1 = args[1] as? B,
         let a2 = args[2] as? C,
@@ -109,7 +117,8 @@ func apply<A, B, C, D, E, F, G, H, I, Z>(fn9: (A, B, C, D, E, F, G, H, I) -> Z, 
 }
 
 /** 10 Arguments */
-func apply<A, B, C, D, E, F, G, H, I, J, Z>(fn10: (A, B, C, D, E, F, G, H, I, J) -> Z, args: [Any]) -> Z? {
+public func apply<A, B, C, D, E, F, G, H, I, J, Z>(fn10: (A, B, C, D, E, F, G, H, I, J) -> Z, args: [Any]) -> Z? {
+    if args.count < 10 { return nil }
     if  let a0 = args[0] as? A,
         let a1 = args[1] as? B,
         let a2 = args[2] as? C,
@@ -125,7 +134,8 @@ func apply<A, B, C, D, E, F, G, H, I, J, Z>(fn10: (A, B, C, D, E, F, G, H, I, J)
 }
 
 /** 11 Arguments */
-func apply<A, B, C, D, E, F, G, H, I, J, K, Z>(fn11: (A, B, C, D, E, F, G, H, I, J, K) -> Z, args: [Any]) -> Z? {
+public func apply<A, B, C, D, E, F, G, H, I, J, K, Z>(fn11: (A, B, C, D, E, F, G, H, I, J, K) -> Z, args: [Any]) -> Z? {
+    if args.count < 11 { return nil }
     if  let a0 = args[0] as? A,
         let a1 = args[1] as? B,
         let a2 = args[2] as? C,
@@ -142,7 +152,8 @@ func apply<A, B, C, D, E, F, G, H, I, J, K, Z>(fn11: (A, B, C, D, E, F, G, H, I,
 }
 
 /** 12 Arguments */
-func apply<A, B, C, D, E, F, G, H, I, J, K, L, Z>(fn12: (A, B, C, D, E, F, G, H, I, J, K, L) -> Z, args: [Any]) -> Z? {
+public func apply<A, B, C, D, E, F, G, H, I, J, K, L, Z>(fn12: (A, B, C, D, E, F, G, H, I, J, K, L) -> Z, args: [Any]) -> Z? {
+    if args.count < 12 { return nil }
     if  let a0 = args[0] as? A,
         let a1 = args[1] as? B,
         let a2 = args[2] as? C,
@@ -160,7 +171,8 @@ func apply<A, B, C, D, E, F, G, H, I, J, K, L, Z>(fn12: (A, B, C, D, E, F, G, H,
 }
 
 /** 13 Arguments */
-func apply<A, B, C, D, E, F, G, H, I, J, K, L, M, Z>(fn13: (A, B, C, D, E, F, G, H, I, J, K, L, M) -> Z, args: [Any]) -> Z? {
+public func apply<A, B, C, D, E, F, G, H, I, J, K, L, M, Z>(fn13: (A, B, C, D, E, F, G, H, I, J, K, L, M) -> Z, args: [Any]) -> Z? {
+    if args.count < 13 { return nil }
     if  let a0 = args[0] as? A,
         let a1 = args[1] as? B,
         let a2 = args[2] as? C,
@@ -179,7 +191,8 @@ func apply<A, B, C, D, E, F, G, H, I, J, K, L, M, Z>(fn13: (A, B, C, D, E, F, G,
 }
 
 /** 14 Arguments */
-func apply<A, B, C, D, E, F, G, H, I, J, K, L, M, N, Z>(fn14: (A, B, C, D, E, F, G, H, I, J, K, L, M, N) -> Z, args: [Any]) -> Z? {
+public func apply<A, B, C, D, E, F, G, H, I, J, K, L, M, N, Z>(fn14: (A, B, C, D, E, F, G, H, I, J, K, L, M, N) -> Z, args: [Any]) -> Z? {
+    if args.count < 14 { return nil }
     if  let a0 = args[0] as? A,
         let a1 = args[1] as? B,
         let a2 = args[2] as? C,
@@ -199,7 +212,8 @@ func apply<A, B, C, D, E, F, G, H, I, J, K, L, M, N, Z>(fn14: (A, B, C, D, E, F,
 }
 
 /** 15 Arguments */
-func apply<A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, Z>(fn15: (A, B, C, D, E, F, G, H, I, J, K, L, M, N, O) -> Z, args: [Any]) -> Z? {
+public func apply<A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, Z>(fn15: (A, B, C, D, E, F, G, H, I, J, K, L, M, N, O) -> Z, args: [Any]) -> Z? {
+    if args.count < 15 { return nil }
     if  let a0 = args[0] as? A,
         let a1 = args[1] as? B,
         let a2 = args[2] as? C,
@@ -220,7 +234,8 @@ func apply<A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, Z>(fn15: (A, B, C, D, E,
 }
 
 /** 16 Arguments */
-func apply<A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Z>(fn16: (A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P) -> Z, args: [Any]) -> Z? {
+public func apply<A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Z>(fn16: (A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P) -> Z, args: [Any]) -> Z? {
+    if args.count < 16 { return nil }
     if  let a0 = args[0] as? A,
         let a1 = args[1] as? B,
         let a2 = args[2] as? C,
@@ -242,7 +257,8 @@ func apply<A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Z>(fn16: (A, B, C, D,
 }
 
 /** 17 Arguments */
-func apply<A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, Z>(fn17: (A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q) -> Z, args: [Any]) -> Z? {
+public func apply<A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, Z>(fn17: (A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q) -> Z, args: [Any]) -> Z? {
+    if args.count < 17 { return nil }
     if  let a0 = args[0] as? A,
         let a1 = args[1] as? B,
         let a2 = args[2] as? C,
@@ -265,7 +281,8 @@ func apply<A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, Z>(fn17: (A, B, C,
 }
 
 /** 18 Arguments */
-func apply<A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, Z>(fn18: (A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R) -> Z, args: [Any]) -> Z? {
+public func apply<A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, Z>(fn18: (A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R) -> Z, args: [Any]) -> Z? {
+    if args.count < 18 { return nil }
     if  let a0 = args[0] as? A,
         let a1 = args[1] as? B,
         let a2 = args[2] as? C,
@@ -289,7 +306,8 @@ func apply<A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, Z>(fn18: (A, B,
 }
 
 /** 19 Arguments */
-func apply<A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, Z>(fn19: (A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S) -> Z, args: [Any]) -> Z? {
+public func apply<A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, Z>(fn19: (A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S) -> Z, args: [Any]) -> Z? {
+    if args.count < 19 { return nil }
     if  let a0 = args[0] as? A,
         let a1 = args[1] as? B,
         let a2 = args[2] as? C,
@@ -314,7 +332,8 @@ func apply<A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, Z>(fn19: (A,
 }
 
 /** 20 Arguments */
-func apply<A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, Z>(fn20: (A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T) -> Z, args: [Any]) -> Z? {
+public func apply<A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, Z>(fn20: (A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T) -> Z, args: [Any]) -> Z? {
+    if args.count < 20 { return nil }
     if  let a0 = args[0] as? A,
         let a1 = args[1] as? B,
         let a2 = args[2] as? C,
