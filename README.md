@@ -16,10 +16,11 @@ print(repeatTest)
 let count = apply(fn: someVariadic, args: ["hello world", "bye"])
 print(count)
 // 20
-let fundumentals = apply(fn20: stringify20FundamentalTypes, args: [1,Int8(2),Int16(3),Int32(4),Int64(5),
-                                                                   Double(6),Float(7),Float32(8),Float64(9),Float80(10),
-                                                                   11,12,13,14,15,
-                                                                   true,"!",["wow"],["#":"kek"],Set(["a", "b", "a"])])
+let fundumentals = apply(fn20: stringify20FundamentalTypes,
+                         args: [1,Int8(2),Int16(3),Int32(4),Int64(5),
+                                Double(6),Float(7),Float32(8),Float64(9),Float80(10),
+                                11,12,13,14,15,
+                                true,"!",["wow"],["#":"kek"],Set(["a", "b", "a"])])
 print(fundumentals)
     
     
