@@ -3,6 +3,9 @@ Language construct that applies a function to a list of arguments, exists in man
 
 Inspired by https://www.drivenbycode.com/the-missing-apply-function-in-swift
 
+### Limitations
+* Maximum 20 arguments in a function signature
+
 ## Usage Example
 
 ```swift
